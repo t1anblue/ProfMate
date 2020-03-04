@@ -7,7 +7,7 @@ from picamera import PiCamera
 import Camera
 import time
 import datetime
-#import database
+import database
 
 class mainDisplayControl:
     
@@ -134,7 +134,7 @@ class studentControl:
         #Read Student information from .txt file
         
         #database part
-   #     database.regist(student_id, family_name,given_name,student_courses)
+        database.regist(student_id, last_name,first_name,student_courses)
         #Face++ part
         FaceSet.Set_Student_ID(face_token, self.student_id);
         FaceSet.Add_Face(self.outer_id, face_token);

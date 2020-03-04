@@ -46,16 +46,6 @@ class Ui_MainWindow(object):
         self.confirm_logo.setPixmap(self.pixmap1)
 
 
-
-    def generate_txt_clicked(self):
-        alert = QMessageBox()
-        alert.setText("See list in the txt file.")
-        alert.exec_()
-        with open("/home/pi/Desktop/ProfMate/student_info.txt",'w+') as filehandler:
-            for listitem in student_info:
-                filehandler.write('%s\n' % listitem)
-        print('write successful')
-
     def upload_photo_button_clicked(self):
 
         student_info.clear()
@@ -84,9 +74,10 @@ class Ui_MainWindow(object):
         student_info.append(self.studentID_Text.text())
         student_info.append(self.comboBox_course.currentText())
 
-        for x in range(len(student_info)):
-            print(student_info[x])
-
+        with open("/home/pi/Desktop/ProfMate/student_info.txt",'w+') as filehandler:
+            for listitem in student_info:
+                filehandler.write('%s\n' % listitem)
+            filehandler.close()
         # *******************Modified*************************
         Python_DB.insert_students(self.studentID_Text.text(),
                                   self.lastName_Text.text(), self.firstName_Text.text())
@@ -98,7 +89,6 @@ class Ui_MainWindow(object):
         self.pixmap = QtGui.QPixmap()
         self.pixmap1 = self.pixmap.scaled(30, 30, QtCore.Qt.KeepAspectRatio)
         self.confirm_logo.setPixmap(self.pixmap1)
-        self.generate_txt_clicked()
 
 
     def switch_page1(self):
