@@ -86,10 +86,10 @@ def get_attendance_count():
     return 
 
 
-def attendance_controller():
+def attendance_controller(camera):
 
     outer_id = '12345678helloAi'
-    camera = PiCamera()
+    #camera = PiCamera()
     print('The class is start!')
     
     #getLecCode()
@@ -134,7 +134,7 @@ class studentControl:
         #Read Student information from .txt file
         
         #database part
-        database.regist(student_id, last_name,first_name,student_courses)
+        database.regist(self.student_id,self.last_name,self.first_name,self.student_course)
         #Face++ part
         FaceSet.Set_Student_ID(face_token, self.student_id);
         FaceSet.Add_Face(self.outer_id, face_token);
@@ -167,7 +167,7 @@ def registration_controller():
     print(last_name)
     
     #if multiple, consider for loop
-    student_courses = info[4]
+    student_courses = 101
     
     face_tokens = detect.detect_face(picture_addr)
     

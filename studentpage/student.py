@@ -13,14 +13,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette
+from picamera import PiCamera
 from V1 import *
-#import  camera
+import Camera
+
+sys.path.append('/home/pi/Desktop/ProfMate/')
+import MainController
+import database
 
 #***************Unpleasent Bkend Modifications******************
-import Python_DB
+
 
 student_info = []
-
+camera = PiCamera()
 
 # def generate_txt_do():
 #     f = open('student_info.txt', 'wb')
@@ -36,6 +41,9 @@ class Ui_MainWindow(object):
     def takePhoto_btn_clicked(self):
         alert = QMessageBox()
         alert.setText("Smile!")
+        Camera.take_picture(camera)
+        path = '/home/pi/Desktop/ProfMate/pic.jpg'
+        student_info.append(path)
         alert.exec_()
 
 
@@ -79,16 +87,12 @@ class Ui_MainWindow(object):
                 filehandler.write('%s\n' % listitem)
             filehandler.close()
         # *******************Modified*************************
-        Python_DB.insert_students(self.studentID_Text.text(),
-                                  self.lastName_Text.text(), self.firstName_Text.text())
 
-        self.firstName_Text.clear()
-        self.lastName_Text.clear()
-        self.studentID_Text.clear()
+        #MainController.registration_controller()
+        
+        print('Finished')
+        
 
-        self.pixmap = QtGui.QPixmap()
-        self.pixmap1 = self.pixmap.scaled(30, 30, QtCore.Qt.KeepAspectRatio)
-        self.confirm_logo.setPixmap(self.pixmap1)
 
 
     def switch_page1(self):
