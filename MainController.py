@@ -124,8 +124,8 @@ class studentControl:
     def __init__ (self, first_name, last_name, student_id, student_courses, outer_id):
         self.first_name = first_name
         self.last_name = last_name
-        self.student_id = student_id    
-        self.student_courses = student_courses
+        self.student_id = int(student_id)    
+        self.student_courses = int(student_courses)
         self.outer_id = outer_id
 
     def addStudent(self, face_token):
@@ -134,7 +134,7 @@ class studentControl:
         #Read Student information from .txt file
         
         #database part
-        database.regist(self.student_id,self.last_name,self.first_name,self.student_course)
+        database.regist(self.student_id,self.last_name,self.first_name,self.student_courses)
         #Face++ part
         FaceSet.Set_Student_ID(face_token, self.student_id);
         FaceSet.Add_Face(self.outer_id, face_token);
@@ -155,13 +155,12 @@ def registration_controller():
 
     error = 0;
     outer_id = '12345678helloAi'
-    f = open("student_info.txt", mode='r')
+    f = open("/home/pi/Desktop/ProfMate/student_info.txt", mode='r')
     info = f.readlines()
     picture_addr = info[0].strip()
-    print(picture_addr)
     first_name = info[1].strip()
     last_name = info[2].strip()
-    student_id = info[3].strip()
+    student_id = int(info[3].strip())
 
     print(first_name)
     print(last_name)
@@ -209,13 +208,3 @@ def registration_controller():
     
     
 def professor_controller():'''
-
-
-
-
-
-if __name__ == '__main__':
-
-    registration_controller()  
-
-    

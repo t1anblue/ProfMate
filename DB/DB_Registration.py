@@ -29,8 +29,8 @@ def regist(student_id, family_name,given_name,lectureid):
             connection.close()
             print("PostgreSQL connection is closed")
 
-student_id = 1314
-family_name = 'onethree'
+student_id = 1315
+family_name = 'onefive'
 given_name = 'onefour'
 lectureid = 101
 regist(student_id, family_name, given_name, lectureid)

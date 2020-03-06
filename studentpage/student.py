@@ -88,7 +88,11 @@ class Ui_MainWindow(object):
             filehandler.close()
         # *******************Modified*************************
 
-        #MainController.registration_controller()
+        try:
+            MainController.registration_controller()
+        except Exception as e:
+
+            log('Reason: ', e)
         
         print('Finished')
         

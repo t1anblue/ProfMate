@@ -1,5 +1,5 @@
 /home/pi/Desktop/ProfMate/xiaocao.jpg
-Xiaocao
-Lu
-10041004
+test
+test555
+411151241
 ENG_4OI6B
